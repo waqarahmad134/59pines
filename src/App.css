@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter Tight", sans-serif;
+    font-optical-sizing: normal ;
+    font-style: normal;
+}
+
+h1 {
+    font-size: 56px !important;
+    font-weight: 600 !important;
+    line-height: 60px;
+    letter-spacing: -2%;
+}
+
+h2 {
+    font-size: 48px !important;
+    font-weight: 600 !important;
+    line-height: normal ;
+    letter-spacing: 0;
+}
+
+h3 {
+    font-size: 36px !important;
+    font-weight: 600 !important;
+    line-height: 44px;
+    letter-spacing: -2%;
+}
+
+h4 {
+    font-size: 28px !important;
+    font-weight: 600 !important;
+    line-height: normal ;
+    letter-spacing: 0;
+}
+
+h5 {
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    line-height: normal;
+    letter-spacing: -6%;
+}
+
+h6 {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    line-height: normal ;
+    letter-spacing: -1px;
+}
+
+
+@media (max-width: 767px) {
+    h1 {
+        font-size: 28px !important;
+        line-height: normal;
+    }
+
+    h2 {
+        font-size: 24px;
+        line-height: 120%;
+        letter-spacing: -2%;
+    }
+
+    h3 {
+        font-size: 20px;
+        line-height: normal;
+        font-weight: 700;
+        letter-spacing: -2%;
+    }
+
+    h4 {
+        font-size: 16px;
+        line-height: 120% ;
+        letter-spacing: -1%;
+    }
+
+    h5 {
+        font-size: 12px;
+        letter-spacing: -6%;
+    }
+
+}
