@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import Offers from "../components/Offers";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       />
       <div className="relative w-2/3 mx-auto z-10">
         <Navbar />
+        <Offers />
       </div>
     </div>
   );

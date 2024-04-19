@@ -19,7 +19,7 @@ export default function Navbar() {
           </div>
           <div className="flex items-center justify-end gap-x-2">
             <IoMailOpenOutline className="text-themePurpleDark text-xl" />
-            <a className="text-lg font-semibold"  href="mailto:mark@honeyhomeoffers.com">mark@honeyhomeoffers.com</a>
+            <a className="text-lg font-semibold"  href="mailto:mark@honeyhomeoffers.com"> mark@honeyhomeoffers.com</a>
           </div>
         </div>
       </nav>
