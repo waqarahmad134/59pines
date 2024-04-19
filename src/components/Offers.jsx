@@ -1,600 +1,185 @@
-import React from 'react'
+import React, { useState } from "react";
 import { FaCheck, FaMinus, FaPlus } from "react-icons/fa";
-import { IoDocumentTextOutline } from "react-icons/io5";
+
+import { IoDocumentTextOutline, IoLogoHtml5 } from "react-icons/io5";
 import { PiPlusMinusFill } from "react-icons/pi";
 import { LuInfo } from "react-icons/lu";
+import {
+  contingencies,
+  financeTerms,
+  keyTerms,
+  sellerCarry,
+} from "../utilities/data";
 
 export default function Offers() {
+  const [toolTip, setToolTip] = useState(false);
   return (
-    <div><div className="w-11/12 lg:w-9/12 mx-auto space-y-10">
-    <div className="text-center space-y-3">
-      <h4 className="text-[#212936] text-3xl md:text-4xl lg:text-5xl font-semibold">
-        3 Offers for Consideration
-      </h4>
-      <p className="bg-[#FFE819] text-[#212936] max-w-96 mx-auto">
-        All offers are negotiable. Feel free to counter!
-      </p>
-    </div>
-
-    <div>
-      <div className="flex gap-1 justify-end">
-        <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold rounded-lg">
-          Offer A
-        </div>
-        <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold rounded-lg">
-          Offer A
-        </div>
-        <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold rounded-lg">
-          Offer A
-        </div>
-      </div>
-
-      <div>
-        <div className="flex items-center gap-1 bg-black p-3 text-white rounded-tl-lg rounded-bl-lg">
-          <span>
-            <IoDocumentTextOutline size={20} />
-          </span>
-          <span>Key Terms</span>
-        </div>
-
-        <div className="flex justify-between">
-          <p
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Purchase Price
+    <>
+      <div className="space-y-10 my-12">
+        <div className="text-center space-y-3">
+          <h1 className="text-[#212936] text-3xl md:text-4xl lg:text-5xl font-semibold">
+            3 Offers for Consideration
+          </h1>
+          <p className="bg-themeYellow text-themeGray text-xs md:text-lg font-semibold rounded-[4px] max-w-96 mx-auto">
+            All offers are negotiable. Feel free to counter!
           </p>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              $412k
-            </div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              $93k
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              $13k
-            </div>
-          </div>
         </div>
 
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
+        <div>
+          <div className="flex gap-1 justify-end">
+            <div className="p-1 md:p-4 bg-[#FBF8F8] text-xs md:text-xl font-semibold rounded-tl-lg rounded-tr-lg h-full w-[48px] md:w-[120px]">
+              Offer A
+            </div>
+            <div className="p-1 md:p-4 bg-[#FAF2F2] text-xs md:text-xl font-semibold rounded-tl-lg rounded-tr-lg w-[48px] md:w-[120px]">
+              Offer B
+            </div>
+            <div className="p-1 md:p-4 bg-[#F2E6E6] text-xs md:text-xl font-semibold rounded-tl-lg rounded-tr-lg w-[48px] md:w-[120px]">
+              Offer C
+            </div>
+          </div>
+
+          <div>
+            <div className="flex items-center gap-1 bg-black p-3 text-white rounded-tl-lg rounded-bl-lg">
+              <span>
+                <IoDocumentTextOutline size={28} />
+              </span>
+              <h5>Key Terms</h5>
+            </div>
+            {keyTerms?.map((data, index) => (
+              <div className="flex justify-between border-b-[1px] border-[FBF8F8]">
+                <div className="relative">
+                  <p onClick={()=>setToolTip(true)} className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed text-[#212936] text-base md:text-2xl -tracking-[2%] w-full cursor-pointer">
+                    {data?.title}
+                  </p>
+                  {index === 0 && toolTip === true ? (
+                    <div className="absolute -top-[100%] left-[90%] text-white bg-themePurpleDark border border-white rounded-md p-4 w-48 z-50">
+                      <button onClick={()=>setToolTip(false)} className="absolute -top-[15px] -right-2 text-black bg-white rounded-full h-8 w-8 flex items-center justify-center ">X</button>
+                      <p className="text-sm md:text-lg font-semibold leading-[18px]">
+                        Click or tap any underlined terms to learn more.
+                      </p>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
+
+                <div className="flex justify-end items-center [&>p]:h-full [&>p]:p-1 [&>p]:md:p-4 [&>p]:text-xs [&>p]:md:text-xl [&>p]:font-semibold [&>p]:w-[48px] [&>p]:md:w-[120px] [&>p]:text-center [&>p]:flex [&>p]:justify-center [&>p]:items-center">
+                  <p
+                    className={`relative ${
+                      index === 0 ? "bg-themeYellow" : "bg-[#FBF8F8]"
+                    }`}
+                  >
+                    {index === 0 && (
+                      <img
+                        className="absolute top-0 left-0 h-full w-full"
+                        src="../images/Hand Draw Shape.png"
+                        alt=""
+                      />
+                    )}
+                    {data?.offerA}
+                  </p>
+                  <p className="bg-[#FAF2F2]">{data?.offerB}</p>
+                  <p className="bg-[#F2E6E6]">{data?.offerC}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div>
+            <div className="flex items-center gap-1 bg-black p-3 text-white rounded-tl-lg rounded-bl-lg">
+              <span>
+                <PiPlusMinusFill size={28} />
+              </span>
+              <h5 className="text-base md:text-2xl">Finance Terms</h5>
+            </div>
+            {financeTerms?.map((data, index) => (
+              <div
+                className="flex justify-between border-b-[1px] border-[FBF8F8]"
+                key={index}
+              >
+                <div className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed text-[#212936] text-base md:text-xl">
+                  {data?.title}
+                </div>
+
+                <div className="flex justify-end items-center [&>p]:h-full [&>p]:p-1 [&>p]:md:p-4 [&>p]:text-xs [&>p]:md:text-xl [&>p]:font-semibold [&>p]:w-[48px] [&>p]:md:w-[120px] [&>p]:text-center [&>p]:flex [&>p]:justify-center [&>p]:items-center">
+                  <p className="bg-[#FBF8F8]">
+                    {data?.offerA === true ? <FaCheck /> : ""}
+                  </p>
+                  <p className="bg-[#FAF2F2]">
+                    {data?.offerB === true ? <FaCheck /> : ""}
+                  </p>
+                  <p className="bg-[#F2E6E6]">
+                    {data?.offerC === true ? <FaCheck /> : ""}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div>
+            <div className="flex items-center gap-1 bg-black p-3 text-white rounded-tl-lg rounded-bl-lg">
+              <span>
+                <LuInfo size={28} />
+              </span>
+              <h5>Contingencies</h5>
+            </div>
+            {contingencies?.map((data, index) => (
+              <div
+                className="flex justify-between border-b-[1px] border-[FBF8F8]"
+                key={index}
+              >
+                <div className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed text-[#212936] text-base md:text-xl">
+                  {data?.title}
+                </div>
+
+                <div className="flex justify-end items-center [&>p]:h-full [&>p]:p-1 [&>p]:md:p-4 [&>p]:text-xs [&>p]:md:text-xl [&>p]:font-semibold [&>p]:w-[48px] [&>p]:md:w-[120px] [&>p]:text-center [&>p]:flex [&>p]:justify-center [&>p]:items-center">
+                  <p className="p-2 md:p-4 bg-[#FBF8F8]">
+                    {data?.offerA === true ? <FaCheck /> : ""}
+                  </p>
+                  <p className="p-2 md:p-4 bg-[#FAF2F2]">
+                    {data?.offerB === true ? <FaCheck /> : ""}
+                  </p>
+                  <p className="p-2 md:p-4 bg-[#F2E6E6] ">
+                    {data?.offerC === true ? <FaCheck /> : ""}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div>
+            <div className="flex items-center gap-1 bg-black p-3 text-white rounded-tl-lg rounded-bl-lg">
+              <span>
+                <IoDocumentTextOutline size={28} />
+              </span>
+              <h5>Seller Carry Terms</h5>
+            </div>
+            {sellerCarry?.map((data, index) => (
+              <div
+                className="flex justify-between border-b-[1px] border-[FBF8F8]"
+                key={index}
+              >
+                <div
+                  className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed  
           text-[#212936] text-base md:text-xl"
-          >
-            Seller Agent Commission
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              $412k
-            </div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              $93k
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              $13k
-            </div>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Buyer Agent Commission
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              $412k
-            </div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              $93k
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              $13k
-            </div>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Days to Close
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              $412k
-            </div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              $93k
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              $13k
-            </div>
+                >
+                  {data?.title}
+                </div>
+                <div className="flex justify-end items-center [&>p]:h-full [&>p]:p-1 [&>p]:md:p-4 [&>p]:text-xs [&>p]:md:text-xl [&>p]:font-semibold [&>p]:w-[48px] [&>p]:md:w-[120px] [&>p]:text-center [&>p]:flex [&>p]:justify-center [&>p]:items-center">
+                  <button className="w-[48px] md:w-[120px] flex justify-center items-center">
+                    <FaMinus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
+                  </button>
+                  <p className="p-2 md:p-4 bg-[#FAF2F2] ">{data?.offerA}</p>
+                  <p className="p-2 md:p-4 bg-[#F2E6E6] ">{data?.offerB}</p>
+                  <button className="w-[48px] md:w-[120px] flex justify-center items-center">
+                    <FaPlus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-
-      <div>
-        <div className="flex items-center gap-1 bg-black p-3 text-white rounded-tl-lg rounded-bl-lg">
-          <span>
-            <PiPlusMinusFill size={20} />
-          </span>
-          <span>Finance Terms</span>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Partial Seller Carry
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center"></div>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Bank Financed Buyer Loan
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center"></div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center"></div>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Subject to Existing Loans
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center"></div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center"></div>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Cash
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center"></div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center"></div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div className="flex items-center gap-1 bg-black p-3 text-white rounded-tl-lg rounded-bl-lg">
-          <span>
-            <LuInfo size={20} />
-          </span>
-          <span>Contingencies</span>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Sale of Current Home
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center"></div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center"></div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center"></div>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Buyer Loan Approval
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center"></div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center"></div>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Formal Appraisal
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center"></div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center"></div>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Inspection
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Title Report
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Home Insurance
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <div className="p-2 md:p-4 bg-[#FBF8F8] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center flex justify-center">
-              <FaCheck />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div className="flex items-center gap-1 bg-black p-3 text-white rounded-tl-lg rounded-bl-lg">
-          <span>
-            <IoDocumentTextOutline size={20} />
-          </span>
-          <span>Seller Carry Terms</span>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Down Pmt.
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaMinus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              371M
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              432M
-            </div>
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaPlus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Purchase Price
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaMinus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              300k
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              400k
-            </div>
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaPlus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Monthly Pmt.
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaMinus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              2158
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              2245
-            </div>
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaPlus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Balloon Pmt.
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaMinus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              50
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              60
-            </div>
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaPlus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Loan Amt.
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaMinus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              372M
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              360M
-            </div>
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaPlus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Loan APR
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaMinus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              0.01%
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              0.02%
-            </div>
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaPlus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Loan Term
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaMinus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              12 yrs
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              8 yrs
-            </div>
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaPlus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Total No. of Pmt.
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaMinus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              3 yrs
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              5 yrs
-            </div>
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaPlus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Broker/ Agents Commissions
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaMinus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              294K
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              276K
-            </div>
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaPlus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Net Pmt. to Seller (At Close)
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaMinus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              250M
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              450M
-            </div>
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaPlus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <div
-            className="p-2 md:p-4 underline decoration-[#9C76F4] decoration-dashed col-span-2 
-          text-[#212936] text-base md:text-xl"
-          >
-            Net Pmt. to Seller (Total)
-          </div>
-
-          <div className="flex justify-end col-span-1">
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaMinus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-            <div className="p-2 md:p-4 bg-[#FAF2F2] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              320M
-            </div>
-            <div className="p-2 md:p-4 bg-[#F2E6E6] text-base md:text-xl font-semibold w-[70px] md:w-[100px] text-center">
-              450M
-            </div>
-            <button className="w-[70px] md:w-[100px] flex justify-center items-center">
-              <FaPlus className="bg-[#F6F2FE] text-[#6941C6] w-6 h-6 md:w-8 md:h-8 p-1.5 md:p-2 rounded-full" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div></div>
-  )
+    </>
+  );
 }

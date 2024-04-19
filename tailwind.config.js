@@ -10,6 +10,9 @@ export default {
         themePurpleLight: "#9C76F4",
         themePurpleDark: "#6941C6",
         themeGray: "#212936",
+        themeGraySuit: "#8E8E93",
+        themeYellow: "#FFE819",
+        themeBlueLight : "#DDCAFB"
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
@@ -21,6 +24,7 @@ export default {
       backgroundImage: {
         bodyRight: "url('/images/body-right.png')",
         bodyLeft: "url('/images/body-left.png')",
+        videoBanner: "url('/images/banner.png')",
       },
     },
   },
